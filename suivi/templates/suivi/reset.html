@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Kodinger">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>My Login Page &mdash; Bootstrap 4 Login Page Snippet</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet"  href="{% static 'suivi/my-login.css' %}">
+</head>
+<body >
+    <section>
+	<div class="login_box">
+		<div class="left">
+			<div class="top_link">
+				<img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt="">
+				<a href="login.html">
+					Retourner </a>
+			</div>
+
+			<div class="contact">
+
+			 <form method="POST">
+				{% csrf_token %}
+				 <h4 class="card-title">Changer mot de passe</h4>
+				 <label for="new-password">Nouveau mot de passe:</label>
+				 <input id="id_new_password1" type="password" class="form-control" name="new_password1" required autofocus data-eye>
+
+				 <label for="confirm-password">Confirmer mot de passe:</label>
+				 <input id="id_new_password1" type="password" class="form-control" name="new_password2" required autofocus data-eye>
+				 <div class="invalid-feedback">
+					 Mot de passe requis
+				 </div>
+				 <br>
+				 <div class="form-group m-0">
+					<button type="submit" href="{%url 'password_reset_complete'%}" class=" button btn-outline-success"  style="width: 100%;"><span>Réinitialiser le mot de passe</span></button>
+				 </div>
+			 </form>
+			</div>
+		</div>
+		<div class="right" style="background: url({% static 'suivi/images/backg4.jpg' %});">
+			<div class="right-text">
+				<h2>Marché ESI</h2>
+				<h5>Gestion efficacité innovation</h5>
+			</div>
+			<div class="right-inductor"></div>
+		</div>
+	</div>
+</section>
+<style>
+	.button {
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: #007bff;
+	  border: none;
+	  color: #FFFFFF;
+	  text-align: center;
+	  font-size: 16px;
+	  padding: 10px;
+	  width: 100px;
+	  transition: all 0.5s;
+	  cursor: pointer;
+	  margin: 5px;
+	}
+	
+	.button span {
+	  cursor: pointer;
+	  display: inline-block;
+	  position: relative;
+	  transition: 0.5s;
+	}
+	
+	.button span:after {
+	  content: '\00bb';
+	  position: absolute;
+	  opacity: 0;
+	  top: 0;
+	  right: -20px;
+	  transition: 0.5s;
+	}
+	
+	.button:hover span {
+	  padding-right: 25px;
+	}
+	
+	.button:hover span:after {
+	  opacity: 1;
+	  right: 0;
+	}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="js/my-login.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Kodinger">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>My Login Page &mdash; Bootstrap 4 Login Page Snippet</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet"  href="{% static 'suivi/my-login.css' %}">
+</head>
+
+<body class="my-login-page">
+    <section>
+	<div class="login_box">
+		<div class="left">
+			<div class="top_link">
+				<img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt="">
+				<a href="{% url 'accueil' %}">
+					Retourner </a>
+			</div>
+
+			
+
+				
+					<div class="card-body" style = "position:relative; bottom: -100px; ">
+					<h4 class="card-title ">Réinitialisation du mot de passe réussie</h4>
+                    <p>Revenez à l'écran d'accueil pour vous connecter avec votre nouveau mot de passe</p>
+                </div>	
+			
+		</div>
+		<div class="right" style="background: url({% static 'suivi/images/backg4.jpg' %});">
+			
+			<div class="right-text">
+				<h2>Marché ESI</h2>
+				<h5>Gestion efficacité innovation</h5>
+			</div>
+			<div class="right-inductor"></div>
+		</div>
+	</div>
+</section>
+<style>
+	.button {
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: #4a57a1;
+	  border: none;
+	  color: #FFFFFF;
+	  text-align: center;
+	  font-size: 16px;
+	  padding: 10px;
+	  width: 100px;
+	  transition: all 0.5s;
+	  cursor: pointer;
+	  margin: 5px;
+	}
+	
+	.button span {
+	  cursor: pointer;
+	  display: inline-block;
+	  position: relative;
+	  transition: 0.5s;
+	}
+	
+	.button span:after {
+	  content: '\00bb';
+	  position: absolute;
+	  opacity: 0;
+	  top: 0;
+	  right: -20px;
+	  transition: 0.5s;
+	}
+	
+	.button:hover span {
+	  padding-right: 25px;
+	}
+	
+	.button:hover span:after {
+	  opacity: 1;
+	  right: 0;
+	}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="js/my-login.js"></script>
+</body>
+</html>

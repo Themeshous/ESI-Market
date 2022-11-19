@@ -1,0 +1,409 @@
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% language 'fr' %}
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Filtre de Dossiers</title>
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="{% static 'suivi/projet/charts_loader.js' %}">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{% static 'suivi/projet/plugins/fontawesome-free/css/all.min.css' %}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{% static 'suivi/projet/dist/css/adminlte.min.css' %}">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.js" integrity="sha512-CAv0l04Voko2LIdaPmkvGjH3jLsH+pmTXKFoyh5TIimAME93KjejeP9j7wSeSRXqXForv73KUZGJMn8/P98Ifg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js" integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+</head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{%url 'requete'%}" class="nav-link">Filtre de Dossiers</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+          <i class="fas fa-search"></i>
+        </a>
+        <div class="navbar-search-block">
+          <form class="form-inline">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+
+
+
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="{% static 'suivi/images/logo1.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">MARCHE ESI</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+        <div class="info">
+          <a href="#" class="d-block">{{user.first_name}} {{user.last_name}}</a>
+        </div>
+      </div>
+
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+               {% if user.profile.profil == 'Administrateur' %}
+               <li class="nav-item">
+                 
+                <a href="{% url 'Admin'%}" class="nav-link">
+                  
+                  
+                  
+                  <i class="nav-icon fas fa-desktop"></i>
+                  <p>
+                    Poste de Travail
+                    <i class="right fas "></i>
+                  </p>
+                </a>
+    
+              </li>
+              {% elif user.profile.profil == 'Ordonnateur' %}
+              <li class="nav-item">
+                 
+                <a href="{% url 'Ordonnateur'%}" class="nav-link">
+                  
+                  
+                  
+                  <i class="nav-icon fas fa-desktop"></i>
+                  <p>
+                    Poste de Travail
+                    <i class="right fas "></i>
+                  </p>
+                </a>
+    
+              </li>
+              {% else %}
+              
+              {%endif%}
+              
+
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+               Consultation génerale
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Marche' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Service Marché</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Commande' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Service Commande</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Comptable' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Service Comptable</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Budget' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Service Budget</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'Menu_Marche' %}" class="nav-link ">
+                <i class="nav-icon fas fa-archive"></i>
+                <p>
+            Archives
+            <i class="fas fa-angle"></i>
+          </p>
+        </a>
+
+      </li>
+    </li>
+
+    <li class="nav-item">
+      <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-server"></i>
+        <p>
+         Vos services
+          <i class="fas fa-angle-left right"></i>
+        </p>
+      </a>
+      
+      {% for group in request.user.groups.all %}
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          {% if group.name == 'Comptable' %}
+          <a href="{% url 'Menu_Comptable' %}" class="nav-link">
+            <i class="fas fa-chart-line"></i>
+            {%endif%}
+            {% if group.name == 'Budget' %}
+            <a href="{% url 'Menu_Budget' %}" class="nav-link">
+              <i class="fas fa-dollar-sign"></i>
+              {%endif%}
+              {% if group.name == 'Commande' %}
+              <a href="{% url 'Menu_Commande' %}" class="nav-link">
+                <i class="fas fa-shipping-fast"></i>
+                
+                {%endif%} 
+                {% if group.name == 'Marche' %}
+                <a href="{% url 'Menu_Marche' %}" class="nav-link">
+                  <i class="fas fa-store"></i>
+                  
+                  {%endif%} 
+                  
+            <p>{{group.name}}</p>
+          </a>
+        </li>
+      </ul>
+      {% endfor %}
+    </li>  
+    <li class="nav-header">Déconnexion</li>
+<li class="nav-item">
+    <a href="{% url 'logout' %}" class="nav-link">
+        <i class="nav-icon fas fa-sign-out-alt"></i>
+        <p>Se déconnecter</p>
+    </a>
+</li>     
+
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+
+
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="card">
+        <div class="card-header">
+      <h3>Requêtes:</h3>
+    </div>
+    <div class="card-body">
+     
+ 
+
+      <form method="get" class="form-group">
+        <div class="row form-row">
+        {% for field in filter.form %}
+        <div class="col-6">
+      {{field | as_crispy_field}}
+      
+      </div>
+      {%endfor%}
+    </div>
+      <br>
+        <button type="submit" class="btn btn-outline-success"  >Valider les filtres</button>
+        <a class="btn btn-outline-danger" href="{% url 'requete' %}">Réinitialiser la Requête</a>
+      </form>
+      <br>
+      
+     
+
+
+
+        
+    </div>
+  </div>
+  
+      <!-- /.card -->
+
+      <div class="card">
+        <div class="card-header">
+      <h3>Résultats</h3>
+    </div>
+    <div class="card-body">
+
+      <div class="row">
+          
+        {% for d in filter.qs %}
+  
+        <div class="btn-group" style="flex-wrap: wrap;">
+            
+          <a class="btn btn-outline-primary button" style="width: 120px;" href="{% url 'Consulter_Dossier' d.id %}"><span>{{d.num_dossier}}</span> </a>
+           
+         
+          </div> 
+  
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+      
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  {% include 'suivi/footer.html' %}
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<script>
+  const collection = document.getElementsByTagName("select");
+  for (let i = 0; i < collection.length; i++) {
+  collection[i].classList.add("form-control");
+}
+  const p = document.getElementsByTagName("input");
+  for (let i = 0; i < p.length; i++) {
+  p[i].classList.add("form-control");
+  p[i].type = 'date';
+}
+
+</script>
+<style>
+	.button {
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: #4a57a1;
+	  border: none;
+	  color: #FFFFFF;
+	  text-align: center;
+	  font-size: 16px;
+	  padding: 10px;
+	  width: 100px;
+	  transition: all 0.5s;
+	  cursor: pointer;
+	  margin: 5px;
+	}
+	
+	.button span {
+	  cursor: pointer;
+	  display: inline-block;
+	  position: relative;
+	  transition: 0.5s;
+	}
+	
+	.button span:after {
+	  content: "\f07b";
+    font-family: "Font Awesome 5 Free";
+	  position: absolute;
+	  opacity: 0;
+	  top: 0;
+	  right: -20px;
+	  transition: 0.5s;
+	}
+	
+	.button:hover span {
+	  padding-right: 25px;
+	}
+	
+	.button:hover span:after {
+	  opacity: 1;
+	  right: 0;
+	}
+	</style>
+
+<!-- jQuery -->
+<script src="{% static 'suivi/projet/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'suivi/projet/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'suivi/projet/dist/js/adminlte.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'suivi/projet/dist/js/demo.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.js" integrity="sha512-CAv0l04Voko2LIdaPmkvGjH3jLsH+pmTXKFoyh5TIimAME93KjejeP9j7wSeSRXqXForv73KUZGJMn8/P98Ifg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js" integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript" charset="utf-8">
+var myRange = document.querySelector('#myRange');
+var myValue = document.querySelector('#myValue');
+var myUnits = 'jours';
+var off = myRange.offsetWidth / (parseInt(myRange.max) - parseInt(myRange.min));
+var px =  ((myRange.valueAsNumber - parseInt(myRange.min)) * off) - (myValue.offsetParent.offsetWidth / 2);
+
+  myValue.parentElement.style.left = px + 'px';
+  myValue.parentElement.style.top = myRange.offsetHeight + 'px';
+  myValue.innerHTML = myRange.value + ' ' + myUnits;
+
+  myRange.oninput =function(){
+    let px = ((myRange.valueAsNumber - parseInt(myRange.min)) * off) - (myValue.offsetWidth / 2);
+    myValue.innerHTML = myRange.value + ' ' + myUnits;
+    myValue.parentElement.style.left = px + 'px';
+  };
+  </script>
+
+</body>
+</html>
+{% endlanguage %}

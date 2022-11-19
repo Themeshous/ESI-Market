@@ -1,0 +1,320 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Service Commandes</title>
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{% static 'suivi/projet/plugins/fontawesome-free/css/all.min.css' %}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{% static 'suivi/projet/dist/css/adminlte.min.css' %}">
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'suivi/projet/plugins/toastr/toastr.css' %}" media="all">
+<script type="text/javascript" src="{% static 'suivi/projet/plugins/toastr/toastr.min.js' %}"></script>
+
+</head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+ 
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="{% static 'suivi/images/logo1.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">MARCHE ESI</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+        <div class="info">
+          <a href="#" class="d-block">{{user.first_name}} {{user.last_name}}</a>
+        </div>
+      </div>
+
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+               <li class="nav-item">
+                <a href="{% url 'Menu_Commande' %}" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    Dashboard
+                    <i class="right fas "></i>
+                  </p>
+                </a>
+    
+              </li>
+
+               <li class="nav-item">
+                <a class="nav-link">
+                  <i class="nav-icon fas fa-truck"></i>
+                  <p>
+                    Service commande
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Menu_precommande' %}" class="nav-link">
+                  <i class="nav-icon fas fa-box"></i>
+                  <p>
+                    Pré-commande
+                    <i class="right fas "></i>
+                  </p>
+                </a>
+    
+              </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="nav-icon fas fa-file-invoice"></i>
+                      <p>
+                        Suivi commande
+                        <i class="right fas "></i>
+                      </p>
+                    </a>
+        
+                  </li>
+                </ul>
+              </li>
+
+
+
+
+
+          <li class="nav-item">
+            <a href="{% url 'Menu_Marche' %}" class="nav-link ">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+            Archives
+            <i class="fas fa-angle"></i>
+          </p>
+        </a>
+
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'requete' %}" class="nav-link ">
+            <i class="nav-icon fas fa-filter"></i>
+            <p>
+        Filtres de dossiers
+        <i class="fas fa-angle"></i>
+      </p>
+    </a>
+  
+  </li>
+
+
+    <li class="nav-header">Déconnexion</li>
+<li class="nav-item">
+    <a href="{% url 'logout' %}" class="nav-link">
+        <i class="nav-icon fas fa-sign-out-alt"></i>
+        <p>Se déconnecter</p>
+    </a>
+</li>     
+
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h2 class=" w3-animate-opacity " style="color: dodgerblue;"><strong>Service Commandes(Suivi des commandes)</strong></h2>
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+
+        </div>
+
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!-- Default box -->
+    <div class="w3-container">
+
+  </div>
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Progrès des dossiers</h3>
+
+
+        </div>
+        <div class="card-body p-0">
+          
+          <table class="table table-striped projects">
+            <thead>
+                <tr>
+
+                    <th style="width: 20%">
+                        Numéro de consultation
+                    </th>
+                    <th style="width: 20%">
+                        Objet de la consultation
+                    </th>
+                    <th style="width: 30%">
+                      Responsable du suivi de la consultation
+                    </th>
+                    <th style="width: 20%">
+                        Progrès du dossier
+                    </th>
+                    <th style="width: 8%" class="text-center">
+                        Statut
+                    </th>
+                    <th style="width: 20%">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  {% for column in dataset%}
+
+
+                    <td>
+                        <a>
+                            {{column.num_dossier}}
+                        </a>
+                        <br/>
+                        <small>
+                           Date de reception {{column.date_rec_comm|date:'d/m/Y'}}
+                        </small>
+                    </td>
+                    <td>
+                        <ul class="list-inline">
+
+
+                            <li class="list-inline-item">
+                              <a>
+                                {{column.objet}}
+                              </a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                      <a>
+                        {{column.resp_suivi_C | default_if_none:"Pas encore assigné"}}
+                      </a>
+                    </td>
+                    {% if column.statut == 'Précommande' %}
+                    <td class="project_progress">
+                        <div class="progress progress-sm">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width : 15%" >
+                            </div>
+                        </div>
+                        <small>
+                            Précommande
+                        </small>
+                    </td>
+                    <td class="project-state">
+                      <span class="badge badge-primary">{{column.statut}}</span>
+                  </td>
+                    {% elif column.statut == 'Suivi Commande' %}
+                    <td class="project_progress">
+                      <div class="progress progress-sm">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width : 15%" >
+                        </div>
+                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width : 25%" >
+                        </div>
+                      </div>
+                      <small>
+                        Suivi Commande
+                      </small>
+                  </td>
+                  <td class="project-state">
+                    <span class="badge badge-warning">{{column.statut}}</span>
+                </td>
+                {% elif column.statut == 'Initial' %}
+                <td class="project_progress">
+                  <div class="progress progress-sm">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width : 15%" >
+                    </div>
+                    <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width : 25%" >
+                    </div>
+                  </div>
+                  <small>
+                    Suivi Commande
+                  </small>
+              </td>
+              <td class="project-state">
+                <span class="badge badge-warning">{{column.statut}}</span>
+            </td>
+
+
+              {% endif %}
+
+                    <td class="project-actions text-right">
+                      <div class="btn-group">
+                        <a class="btn btn-primary btn-sm pull-right" href="{% url 'Suivre_commande' column.id %}">
+                            <i class="fas fa-folder">
+                            </i>
+                            Consulter
+                        </a>
+
+                      </div>
+                    </td>
+                    
+                </tr>
+
+
+
+                {% endfor %} 
+
+             </tbody>
+        </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  {% include 'suivi/footer.html' %}
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="{% static 'suivi/projet/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'suivi/projet/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'suivi/projet/dist/js/adminlte.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'suivi/projet/dist/js/demo.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Marché ESI</title>
+	<link rel="stylesheet" href="{% static 'suivi/bootstrap.min.css' %}" >
+	<link rel="stylesheet" href="{% static 'suivi/google-fonts.css' %}">
+	<link rel="stylesheet"  href="{% static 'suivi/my-login.css' %}">
+	<link rel="stylesheet" href="{% static 'suivi/projet/plugins/fontawesome-free/css/all.min.css' %}">
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'suivi/projet/plugins/toastr/toastr.css' %}" media="all">
+<script type="text/javascript" src="{% static 'suivi/projet/plugins/toastr/toastr.min.js' %}"></script> 
+</head>
+
+<body >
+
+<div class="card-group">
+
+		<div class="card">
+			<div class="card-body">
+
+
+
+				<div class="align">
+				<img src="{% static 'suivi/images/logo1.png' %}" alt="logo.jpg" style="height: 15%;width: 10%;" >
+				
+				<h1 class="text-center" style="color: #007bff; font-size: xx-large;">
+					Bienvenue à la Plateforme de suivi des marchés de l'ESI
+				</h1> </div>
+				<br>
+				<br>
+			<div class="contact">
+				<form action="{% url 'login' %}" method="POST"> {% csrf_token %}
+					<h3>Connectez-vous à votre profile</h3>
+					<br>
+					<label for="username">Adresse émail:</label>
+					
+
+					  
+					<input id="username" type="username" class="form-control pull-right" name="username" value="" required autofocus>
+					
+					<br>
+					<label for="password">Mot de passe:
+
+					</label>
+					<input id="password" type="password" class="form-control pull-right" name="password" required data-eye>
+					<br>
+					
+					<a href="{% url 'forgot' %}" >
+
+						Mot de passe oublié ?
+				   </a>
+					<br>
+
+					{% if messages %}
+					<ul class="messages">
+						{% for message in messages %}
+
+						<li{% if message.tags %} class="{{ message.tags }}" style="color: red;" {%endif %}>{{ message }}</li>
+						{% endfor %}
+					</ul>
+					{% endif %}
+					<br>
+				
+				   
+					<button type="submit" class=" button btn-success" value="Se connecter" style="width: 100%; align-self: center;"><span>Se connecter</span></button>
+				</form>
+
+			</div>
+		</div>
+
+	</div>
+
+	<div class="card">
+		<div class="card-body">
+			
+		<img style="top: auto;" src="{% static 'suivi/images/finance.jpg' %}">
+
+
+	</div>
+</div>
+</div>
+
+
+
+<style>
+	.button {
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: #007bff;
+	  border: none;
+	  color: #FFFFFF;
+	  text-align: center;
+	  font-size: 16px;
+	  padding: 10px;
+	  width: 100px;
+	  transition: all 0.5s;
+	  cursor: pointer;
+	  margin: 5px;
+	}
+	
+	.button span {
+	  cursor: pointer;
+	  display: inline-block;
+	  position: relative;
+	  transition: 0.5s;
+	}
+	
+	.button span:after {
+	  content: '\00bb';
+	  position: absolute;
+	  opacity: 0;
+	  top: 0;
+	  right: -20px;
+	  transition: 0.5s;
+	}
+	
+	.button:hover span {
+	  padding-right: 25px;
+	}
+	
+	.button:hover span:after {
+	  opacity: 1;
+	  right: 0;
+	}
+	</style>
+	
+	<script src="js/my-login.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<link rel="stylesheet" href="{% static 'suivi/fonts.css' %}" />
+
+<footer class="fixed-bottom text-center" >
+	<a class="center" href="{% url 'Contact' %}">
+		<i class="fas fa-comments"></i> Nous Contacter</a>
+
+		<a class="center"  href="">
+			<i class="fas fa-info-circle"></i> Aide en ligne </a>	
+        <p class="center">Copyright &copy; <script>document.write(new Date().getFullYear())</script> Direction des systèmes informatiques</p>
+</footer>
+
+</body>
+</html>

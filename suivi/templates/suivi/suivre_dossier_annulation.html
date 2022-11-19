@@ -1,0 +1,271 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Service Marché</title>
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{% static 'suivi/projet/plugins/fontawesome-free/css/all.min.css' %}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{% static 'suivi/projet/dist/css/adminlte.min.css' %}">
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'suivi/projet/plugins/toastr/toastr.css' %}" media="all">
+<script type="text/javascript" src="{% static 'suivi/projet/plugins/toastr/toastr.min.js' %}"></script>
+
+</head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="{% static 'suivi/images/logo1.png' %}" alt="AdminLTE Logo" class="brand-image img-circle " style="opacity: .8">
+      <span class="brand-text font-weight-light">MARCHE ESI</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+        <div class="info">
+          <a href="#" class="d-block">{{user.first_name}} {{user.last_name}}</a>
+        </div>
+      </div>
+
+
+      <!-- Sidebar Menu -->
+
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+          <li class="nav-item">
+            <a href="{% url 'Menu_Marche' %}" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Dashboard
+                <i class="right fas "></i>
+              </p>
+            </a>
+
+          </li>
+          
+               <li class="nav-item">
+                <a  class="nav-link ">
+                  <i class="nav-icon fas fa-store"></i>
+                  <p>
+                    Service marché
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{% url 'Lancement_dossier' %}" class="nav-link">
+                      <i class="nav-icon fas fa-folder"></i>
+                      <p>
+                        Lancement de dossier
+                        <i class="right fas "></i>
+                      </p>
+                    </a>
+        
+                  </li>
+                </ul>
+              <ul class="nav nav-treeview">
+                
+              <li class="nav-item">
+                <a href="{% url 'Ouverture_evaluation' %}" class="nav-link">
+                  <i class="nav-icon fas fa-clipboard-check"></i>
+                  <p>
+                    Ouverture et Evalutaion
+                    <i class="right fas "></i>
+                  </p>
+                </a>
+    
+              </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{% url 'Infructuosite_rejet' %}" class="nav-link">
+                    <i class="nav-icon fas fa-window-close"></i>
+                    <p>
+                      Infructuosité/Annulation
+                      <i class="right fas "></i>
+                    </p>
+                  </a>
+      
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{% url 'Acceptation' %}" class="nav-link">
+                    <i class="nav-icon fas fa-check-circle"></i>
+                    <p>
+                      Acceptation
+                      <i class="right fas "></i>
+                    </p>
+                  </a>
+      
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview" >
+                
+              <li class="nav-item">
+                <a href="{% url 'Autres' %}" class="nav-link">
+                  <i class="nav-icon fas fa-exclamation-triangle"></i>
+                  <p>
+                    Autres
+                    <i class="right fas "></i>
+                  </p>
+                </a>
+    
+              </li>
+
+              </ul>
+
+              </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <li class="nav-item">
+            <a  class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+               Archives
+              <i class="right fas"></i>
+              </p>
+            </a>
+
+          </li>
+          
+          <li class="nav-item">
+            <a href="{% url 'Fournisseurs'%}" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Fournisseurs
+                <i class="right fas "></i>
+              </p>
+            </a>
+
+          </li>
+
+    </li>
+
+
+
+
+    </li>  
+    <li class="nav-item">
+      <a href="{% url 'requete' %}" class="nav-link ">
+          <i class="nav-icon fas fa-filter"></i>
+          <p>
+      Filtres de dossiers
+      <i class="fas fa-angle"></i>
+    </p>
+  </a>
+
+</li>
+
+
+    <li class="nav-header">Déconnexion</li>
+<li class="nav-item">
+    <a href="{% url 'logout' %}" class="nav-link">
+        <i class="nav-icon fas fa-sign-out-alt"></i>
+        <p>Se déconnecter</p>
+    </a>
+</li>     
+
+      </nav>
+    
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h2 class=" w3-animate-opacity " style="color: dodgerblue;"><strong>Suivi des consultations (Annulation/Rejet)</strong></h2>
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+
+        </div>
+
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!-- Default box -->
+    <div class="w3-container">
+
+  </div>
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-body">
+        {% load crispy_forms_tags %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form |crispy }}
+            <br>
+            <button type="submit" class="btn btn-success">Sauvegarder</button>
+          </form>
+        </div>
+        
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  {% include 'suivi/footer.html' %}
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="{% static 'suivi/projet/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'suivi/projet/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'suivi/projet/dist/js/adminlte.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'suivi/projet/dist/js/demo.js' %}"></script>
+</body>
+</html>

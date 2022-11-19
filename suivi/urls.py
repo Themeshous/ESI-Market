@@ -1,0 +1,75 @@
+from django.urls import path
+from . import views
+from django.contrib.auth.views import LogoutView, PasswordResetView
+from django.contrib.auth import views as auth_views
+
+
+urlpatterns = [
+path('', views.login_request, name='login'),
+path("logout/", LogoutView.as_view(), name="logout"),
+path("forgot/", auth_views.PasswordResetView.as_view(template_name="suivi/forgot.html"), name='forgot'),
+path("forgot/done/", auth_views.PasswordResetDoneView.as_view( template_name="suivi/done.html"), name="password_reset_done"),
+path("forgot-confirm/<uidb64>/<token>", auth_views.PasswordResetConfirmView.as_view( template_name="suivi/reset.html"), name="password_reset_confirm"),
+path("reset/", auth_views.PasswordResetCompleteView.as_view( template_name="suivi/complete.html"), name="password_reset_complete"),
+path("affich/profile/<user>", views.Affich_Profile, name='affich_profile'),
+path("profiles/<user>", views.Profile, name="Profile"),
+path("administration/", views.Admin, name='Admin'),
+path("ordonnateur/", views.Ordonnateur, name='Ordonnateur'),
+path("ordonnateur/modifier_durée/", views.modif_duree, name='modif_duree'),
+path("administration/delete/<username>", views.del_user, name='del_user'),
+path("historique", views.Historique, name='Historique'),
+path("ajouter_profile", views.Ajouter_User, name='Ajouter_Profile'),
+
+path("liste_profiles", views.Liste_Profiles, name='Liste_Profiles'),
+path('comptable/', views.Comptable, name='Comptable'),
+path('budget/', views.Budget, name='Budget'),
+path('commande/', views.Commande, name='Commande'),
+path('marche/', views.Marche, name='Marche'),
+path('inserer_marche/', views.Inserer_Marche, name='Inserer_Marche'),
+path('inserer_commande/',views.Inserer_Commande, name='Inserer_Commande'),
+path('menu_archive/', views.Menu_Archive, name='Menu_Archive'),
+
+path('menu_comptable/', views.Menu_Comptable, name='Menu_Comptable'),
+
+path('menu_marche/', views.Menu_Marche, name='Menu_Marche'),
+path('menu_marche/fournisseurs', views.Fournisseurs, name='Fournisseurs'),
+path('menu_marche/fournisseurs/ajouter_fournisseur', views.Ajouter_fournisseur, name='Ajouter_fournisseur'),
+path('menu_marche/lancement_dossier', views.Lancement_dossier, name='Lancement_dossier'),
+path('menu_marche/lancement_dossier/dossier:<int:id>/ajouter_retirants', views.Lancement_dossier_ajout_ret, name='Lancement_dossier_ajout_ret'),
+path('menu_marche/lancement_dossier/ajouter_retirants/supprimer<int:id>', views.Supprimer_ret, name='Supprimer_ret'),
+path('menu_marche/ouverture_evaluation', views.Ouverture_evaluation, name='Ouverture_evaluation'),
+path('menu_marche/ouverture_evaluation/acceptation', views.Acceptation, name='Acceptation'),
+path('menu_marche/ouverture_evaluation/infructuosite_rejet', views.Infructuosite_rejet, name='Infructuosite_rejet'),
+path('menu_marche/ouverture_evaluation/autres', views.Autres, name='Autres'),
+path('menu_marche/ouverture_evaluation/dossier:<int:id>/', views.Ouverture_evaluation_dossier, name='Ouverture_evaluation_dossier'),
+path('menu_marche/ouverture_evaluation/dossier:<int:id>/choix_des_depositaires', views.Ouverture_dossier, name='Ouverture_dossier'),
+path('menu_marche/ouverture_evaluation/dossier:<int:id>/acceptation', views.Ouverture_evaluation_acceptation, name='Ouverture_evaluation_acc'),
+path('menu_marche/ouverture_evaluation/dossier:<int:id>/annulation', views.Ouverture_evaluation_annulation, name='Ouverture_evaluation_ann'),
+path('menu_marche/ouverture_evaluation/dossier:<int:id>/autre', views.Ouverture_evaluation_autre, name='Ouverture_evaluation_autre'),
+path('menu_marche/ouverture_evaluation/dossier:<int:id>/evaluation', views.Evaluation_dossier, name='Evaluation_dossier'),
+path('menu_marche/ouverture_evaluation/dossier:<int:id>/evaluation/classement_soumissionaires', views.Classement_soumissionaire, name='Classement_soumissionaire'),
+# ------------------------------------------------
+# Service Budget
+path('menu_budget/', views.Menu_Budget, name='Menu_Budget'),
+path('menu_budget/control_initial', views.Control_initial, name='Control_initial'),
+# Service Commandes
+path('menu_commande/', views.Menu_Commande, name='Menu_Commande'),
+path('menu_commande/precommandes', views.Menu_precommande, name='Menu_precommande'),
+path('menu_commande/pre_commander/<int:id>/', views.Precommande, name='Precommande'),
+path('menu_commande/suivi_commandes', views.Menu_suivi_commande, name='Menu_suivi_commandes'),
+path('menu_commande/suivre_commandes/<int:id>/', views.Suivre_commande, name='Suivre_commande'),
+path('consulter_dossier/<int:id>/', views.Consulter_Dossier, name='Consulter_Dossier'),
+path('consulter_budget/<int:id>/', views.Consulter_Budget, name='Consulter_Budget'),
+path('consulter_comptable/<int:id>/', views.Consulter_Comptable, name='Consulter_Comptable'),
+path('consulter_commande/<int:id>/', views.Consulter_Commande, name='Consulter_Commande'),
+path('consulter_marche/<int:id>/', views.Consulter_Marche, name='Consulter_Marche'),
+path('modifier_budget/<int:id>/', views.Modifier_Budget, name='Modifier_Budget'),
+path('modifier_comptable/<int:id>/',views.Modifier_Comptable, name='Modifier_Comptable'),
+path('modifier_marche/<int:id>/', views.Modifier_Marche, name='Modifier_Marche'),
+path('modifier_commande/<int:id>/', views.Modifier_Commande, name='Modifier_Commande'),
+path('contact/', views.Contact, name='Contact'),
+path('statistiques/', views.Requete, name='requete'),
+path('ordonnateur/annee_commerciale/', views.annee_commerciale, name='annee_commerciale'),
+path('ordonnateur/modifier_dates/', views.Modifier_Dates, name='modifier_date'),
+path('ordonnateur/control/', views.Control, name='Control'),
+]

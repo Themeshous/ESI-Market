@@ -1,0 +1,177 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Contact us</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Our Team Page HTML Template" name="keywords">
+        <meta content="Our Team Page HTML Template" name="description">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+        
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+        <!-- Template Style sheet -->
+        <link href="{% static 'suivi/style-contact.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+      <div style="background-image: url('{% static 'suivi/images/backg4.jpg' %}');">
+        <div class="button">
+          <a style="color: white" href="{% url 'login' %}">
+              <i class="fas fa-angle-double-left"></i> Retourner accueil</a>
+        </div>
+
+        <!-- Team #1 Start -->
+        <div class="container">
+            <div class="section-title">
+				<h2 style="color: #ffffff">Notre Equipe</h2>
+                <h1 style="color: #ffffff">Team 1: <a style="color: #0e76a8">frontend</a></h1>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <div class="team-1">
+                        <div class="team-img">
+                            <img src="{% static 'suivi/images/houss.jpg' %}" alt="Team Image">
+                        </div>
+                        <div class="team-content">
+                            <h2>Saidoune Achref Houssem</h2>
+                            <h3>Full stack developer</h3>
+                            
+                            <h4><i class="fas fa-at"></i> ja_saidoune@esi.dz</h4>
+                            <h4><i class="fas fa-phone-alt"></i> 0699280014</h4>
+                            <div class="team-social">
+                                <a class="social-fb" href="https://www.facebook.com/meshous.enuodias"><i class="fab fa-facebook-f"></i></a>
+                                <a class="social-li" href="https://www.instagram.com/houssoff/"><i class="fab fa-instagram"></i></a>
+                                <a class="social-git" href=""><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="team-1">
+                        <div class="team-img">
+                            <img src="{% static 'suivi/images/hadil.jpg' %}" style="height: 50%;" alt="Team Image">
+                        </div>
+                        <div class="team-content">
+                            <h2>Nahoui Hadil</h2>
+                            <h3>Frontend developer</h3>
+                            
+                            <h4><i class="fas fa-at"></i> jh_nahoui@esi.dz</h4>
+                            
+                            <div class="team-social">
+                                <a class="social-fb" href="https://www.facebook.com/profile.php?id=100028560612943"><i class="fab fa-facebook-f"></i></a>
+                                <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="social-git" href=""><i class="fab fa-github"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="team-1">
+                        <div class="team-img">
+                            <img src="{% static 'suivi/images/lillia.jpg' %}" alt="Team Image">
+                        </div>
+                        <div class="team-content">
+                            <h2>Mahdid Lilia</h2>
+                            <h3>Frontend developer</h3>
+                            
+                            <h4><i class="fas fa-at"></i> jl_mahdid@esi.dz</h4>
+                            
+                            <div class="team-social">
+                                <a class="social-fb" href="https://www.facebook.com/profile.php?id=100041428627322"><i class="fab fa-facebook-f"></i></a>
+                                <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="social-git" href=""><i class="fab fa-github"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div> 
+        </div>
+        <!-- Team #1 End -->
+        <!-- Team #1' Start -->
+        <div class="container">
+            <div class="section-title">
+                <h1 style="color: #ffffff">Team 2: <a style="color: #0e76a8">Backend</a></h1>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <div class="team-1">
+                        <div class="team-img">
+                            <img src="{% static 'suivi/images/idir2.png' %}" alt="Team Image">
+                        </div>
+                        <div class="team-content">
+                            <h2>Ait said Idir Azzedine</h2>
+                            <h3>Chef d'équipe</h3>
+                            
+                            <h4><i class="fas fa-at"></i> ja_aitsaid@esi.dz</h4>
+                            <h4><i class="fas fa-phone-alt"></i> 0540014021</h4>
+                            <div class="team-social">
+                                <a class="social-fb" href="https://www.facebook.com/profile.php?id=100013339470691"><i class="fab fa-facebook-f"></i></a>
+                                <a class="social-li" href="https://www.instagram.com/azzedine.aitsaid19/"><i class="fab fa-instagram"></i></a>
+                                <a class="social-git" href="https://github.com/Azzedde"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="team-1">
+                        <div class="team-img">
+                            <img src="{% static 'suivi/images/lounes.jpg' %}" alt="Team Image">
+                        </div>
+                        <div class="team-content">
+                            <h2>Lammara Lounes</h2>
+                            <h3>Backend Devloper</h3>
+                            
+                            <h4><i class="fas fa-at"></i> jl_lammara@esi.dz</h4>
+                            <h4><i class="fas fa-phone-alt"></i> 0542907315</h4>
+                            <div class="team-social">
+                                <a class="social-fb" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="social-git" href=""><i class="fab fa-github"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="team-1">
+                        <div class="team-img">
+                            <img src="{% static 'suivi/images/ilyes.jpg' %}" alt="Team Image">
+                        </div>
+                        <div class="team-content">
+                            <h2>Hattabi Ilyes</h2>
+                            <h3>Backend developer</h3>
+                            
+                            <h4><i class="fas fa-at"></i> ji_hattabi@esi.dz</h4>
+                            <h4><i class="fas fa-phone-alt"></i>0556638716</h4>
+                            <div class="team-social">
+                                <a class="social-fb" href="https://www.facebook.com/profile.php?id=100023785217730"><i class="fab fa-facebook-f"></i></a>
+                                <a class="social-li" href="https://www.instagram.com/ilyes_hat/"><i class="fab fa-linkedin-in"></i></a>
+                                <a class="social-git" href=""><i class="fab fa-github"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Team #1' End -->
+      </div>
+
+
+    </body>
+</html>

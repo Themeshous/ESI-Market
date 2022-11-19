@@ -1,0 +1,496 @@
+{% load static %}
+{% load i18n %}
+{% language 'fr' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ESI | Consult comptable</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'suivi/projet/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{% static 'suivi/projet/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' % }">
+  <link rel="stylesheet" href="{% static 'suivi/projet/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'suivi/projet/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'suivi/projet/dist/css/adminlte.min.css' %}">
+  <!--link rel="stylesheet" href="menu.html"-->
+
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{% url 'Menu_Comptable' %}" class="nav-link">Menu des progrès</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{% url 'Comptable' %}" class="nav-link">Consultation du service comptabilité</a>
+      </li>
+
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="{% static 'suivi/images/logo1.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">MARCHE ESI</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+        <div class="info">
+          <a href="#" class="d-block">{{user.first_name}} {{user.last_name}}</a>
+        </div>
+      </div>
+
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+               <li class="nav-item">
+                <a href="{% url 'Menu_Comptable'%}" class="nav-link">
+                  <i class="nav-icon fas fa-desktop"></i>
+                  <p>
+                    Poste de Travail
+                    <i class="right fas "></i>
+                  </p>
+                </a>
+    
+              </li>
+
+
+
+
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+               Consultation génerale
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Marche' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Service Marché</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Commande' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Service Commande</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Comptable' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Service Comptable</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Budget' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Service Budget</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'Menu_Archive' %}" class="nav-link ">
+                <i class="nav-icon fas fa-archive"></i>
+                <p>
+            Archives
+            <i class="fas fa-angle"></i>
+          </p>
+        </a>
+
+      </li>
+    </li>
+
+    <li class="nav-item">
+      <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-server"></i>
+        <p>
+         Vos services
+          <i class="fas fa-angle-left right"></i>
+        </p>
+      </a>
+      
+      {% for group in request.user.groups.all %}
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          {% if group.name == 'Comptable' %}
+          <a href="{% url 'Menu_Comptable' %}" class="nav-link">
+            <i class="fas fa-chart-line"></i>
+            {%endif%}
+            {% if group.name == 'Budget' %}
+            <a href="{% url 'Menu_Budget' %}" class="nav-link">
+              <i class="fas fa-dollar-sign"></i>
+              {%endif%}
+              {% if group.name == 'Commande' %}
+              <a href="{% url 'Menu_Commande' %}" class="nav-link">
+                <i class="fas fa-shipping-fast"></i>
+                
+                {%endif%} 
+                {% if group.name == 'Marche' %}
+                <a href="{% url 'Menu_Marche' %}" class="nav-link">
+                  <i class="fas fa-store"></i>
+                  
+                  {%endif%} 
+                  
+            <p>{{group.name}}</p>
+          </a>
+        </li>
+      </ul>
+      {% endfor %}
+    </li>  
+    <li class="nav-header">Déconnexion</li>
+<li class="nav-item">
+    <a href="{% url 'logout' %}" class="nav-link">
+        <i class="nav-icon fas fa-sign-out-alt"></i>
+        <p>Se déconnecter</p>
+    </a>
+</li>     
+
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Service Comptable</h1>
+          </div>
+
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- /.card -->
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Consultation la table du service comptable</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Numero du dossier</th>
+                    <th>Date de reception</th>
+                    <th>Responsable du dossier</th>
+                    <th>Decision A/R</th>
+                    <th>Pieces a completer</th>
+                    <th>Date de completemnt du dossier</th>
+                    <th>Date de paiement</th>
+                    <th>Date de prolongation</th>
+                    <th>Obesrvations</th>
+                    <th>La durée du traitement</th>
+
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {% for column in data %}  
+                    <tr>
+                      <td>{{column.Num|default_if_none:'--'}}</td>
+                      <td>{{column.Rec|default_if_none:'--'}}</td>
+                      <td>{{column.Resp|default_if_none:'--'}}</td>
+                      <td>{{column.Decision|default_if_none:'--'}}</td>
+                      <td>{{column.Piece|default_if_none:'--'}}</td>
+                      <td>{{column.Complement|default_if_none:'--'}}</td>
+                      <td>{{column.Paiements|default_if_none:'--'}}</td>
+                      <td>{{column.Prolongation|default_if_none:'--'}}</td>
+                      <td>{{column.Observation|default_if_none:'--'}}</td>
+                      <td>{{column.Duree|default_if_none:'--'}}</td>
+                      </tr>
+                      {% endfor %}
+  
+                    </tbody>
+  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'suivi/footer.html' %}
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="{% static 'suivi/projet/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'suivi/projet/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{% static 'suivi/projet/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'suivi/projet/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'suivi/projet/dist/js/adminlte.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'suivi/projet/dist/js/demo.js' %}"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "language":{
+    "emptyTable": "Aucune donnée disponible dans le tableau",
+    "lengthMenu": "Afficher _MENU_ éléments",
+    "loadingRecords": "Chargement...",
+    "processing": "Traitement...",
+    "zeroRecords": "Aucun élément correspondant trouvé",
+    "paginate": {
+        "first": "Premier",
+        "last": "Dernier",
+        "previous": "Précédent",
+        "next": "Suiv"
+    },
+    "aria": {
+        "sortAscending": ": activer pour trier la colonne par ordre croissant",
+        "sortDescending": ": activer pour trier la colonne par ordre décroissant"
+    },
+    "select": {
+        "rows": {
+            "_": "%d lignes sélectionnées",
+            "0": "Aucune ligne sélectionnée",
+            "1": "1 ligne sélectionnée"
+        },
+        "1": "1 ligne selectionnée",
+        "_": "%d lignes selectionnées",
+        "cells": {
+            "1": "1 cellule sélectionnée",
+            "_": "%d cellules sélectionnées"
+        },
+        "columns": {
+            "1": "1 colonne sélectionnée",
+            "_": "%d colonnes sélectionnées"
+        }
+    },
+    "autoFill": {
+        "cancel": "Annuler",
+        "fill": "Remplir toutes les cellules avec <i>%d<\/i>",
+        "fillHorizontal": "Remplir les cellules horizontalement",
+        "fillVertical": "Remplir les cellules verticalement",
+        "info": "Exemple de remplissage automatique"
+    },
+    "searchBuilder": {
+        "conditions": {
+            "date": {
+                "after": "Après le",
+                "before": "Avant le",
+                "between": "Entre",
+                "empty": "Vide",
+                "equals": "Egal à",
+                "not": "Différent de",
+                "notBetween": "Pas entre",
+                "notEmpty": "Non vide"
+            },
+            "number": {
+                "between": "Entre",
+                "empty": "Vide",
+                "equals": "Egal à",
+                "gt": "Supérieur à",
+                "gte": "Supérieur ou égal à",
+                "lt": "Inférieur à",
+                "lte": "Inférieur ou égal à",
+                "not": "Différent de",
+                "notBetween": "Pas entre",
+                "notEmpty": "Non vide"
+            },
+            "string": {
+                "contains": "Contient",
+                "empty": "Vide",
+                "endsWith": "Se termine par",
+                "equals": "Egal à",
+                "not": "Différent de",
+                "notEmpty": "Non vide",
+                "startsWith": "Commence par"
+            },
+            "array": {
+                "equals": "Egal à",
+                "empty": "Vide",
+                "contains": "Contient",
+                "not": "Différent de",
+                "notEmpty": "Non vide",
+                "without": "Sans"
+            }
+        },
+        "add": "Ajouter une condition",
+        "button": {
+            "0": "Recherche avancée",
+            "_": "Recherche avancée (%d)"
+        },
+        "clearAll": "Effacer tout",
+        "condition": "Condition",
+        "data": "Donnée",
+        "deleteTitle": "Supprimer la règle de filtrage",
+        "logicAnd": "Et",
+        "logicOr": "Ou",
+        "title": {
+            "0": "Recherche avancée",
+            "_": "Recherche avancée (%d)"
+        },
+        "value": "Valeur"
+    },
+    "searchPanes": {
+        "clearMessage": "Effacer tout",
+        "count": "{total}",
+        "title": "Filtres actifs - %d",
+        "collapse": {
+            "0": "Volet de recherche",
+            "_": "Volet de recherche (%d)"
+        },
+        "countFiltered": "{shown} ({total})",
+        "emptyPanes": "Pas de volet de recherche",
+        "loadMessage": "Chargement du volet de recherche..."
+    },
+    "buttons": {
+        "copyKeys": "Appuyer sur ctrl ou u2318 + C pour copier les données du tableau dans votre presse-papier.",
+        "collection": "Collection",
+        "colvis": "Visibilité colonnes",
+        "colvisRestore": "Rétablir visibilité",
+        "copy": "Copier",
+        "copySuccess": {
+            "1": "1 ligne copiée dans le presse-papier",
+            "_": "%ds lignes copiées dans le presse-papier"
+        },
+        "copyTitle": "Copier dans le presse-papier",
+        "csv": "CSV",
+        "excel": "Excel",
+        "pageLength": {
+            "-1": "Afficher toutes les lignes",
+            "1": "Afficher 1 ligne",
+            "_": "Afficher %d lignes"
+        },
+        "pdf": "PDF",
+        "print": "Imprimer"
+    },
+    "decimal": ",",
+    "info": "Affichage de _START_ à _END_ sur _TOTAL_ éléments",
+    "infoEmpty": "Affichage de 0 à 0 sur 0 éléments",
+    "infoThousands": ".",
+    "search": "Rechercher:",
+    "searchPlaceholder": "...",
+    "thousands": ".",
+    "infoFiltered": "(filtrés depuis un total de _MAX_ éléments)",
+    "datetime": {
+        "previous": "Précédent",
+        "next": "Suivant",
+        "hours": "Heures",
+        "minutes": "Minutes",
+        "seconds": "Secondes",
+        "unknown": "-",
+        "amPm": [
+            "am",
+            "pm"
+        ]
+    },
+    "editor": {
+        "close": "Fermer",
+        "create": {
+            "button": "Nouveaux",
+            "title": "Créer une nouvelle entrée",
+            "submit": "Envoyer"
+        },
+        "edit": {
+            "button": "Editer",
+            "title": "Editer Entrée",
+            "submit": "Modifier"
+        },
+        "remove": {
+            "button": "Supprimer",
+            "title": "Supprimer",
+            "submit": "Supprimer"
+        },
+        "error": {
+            "system": "Une erreur système s'est produite"
+        },
+        "multi": {
+            "title": "Valeurs Multiples",
+            "restore": "Rétablir Modification"
+        }
+    }
+}  ,
+      "responsive": true, "lengthChange": true, "autoWidth": false,
+      "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+</body>
+</html>
+{% endlanguage %}
