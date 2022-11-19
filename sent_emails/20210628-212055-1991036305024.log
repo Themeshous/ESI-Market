@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: ja_aitsaid@esi.dz
+Date: Mon, 28 Jun 2021 20:20:55 -0000
+Message-ID: <162491165504.6888.17005639798888601085@assiremAITSAID>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/suivi/forgot-confirm/MQ/aoz1yv-bed5e6b7273f1cee649370984d165055
+
+Your username, in case you’ve forgotten: Ordonnateur
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
